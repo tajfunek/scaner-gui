@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'web_gui.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'scans',
+        'USER': 'scans_main',
+        'PASSWORD': 'sieweczka',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -104,7 +108,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
-LANGUAGE_CODE = 'pl-pl'
+LANGUAGE_CODE = 'en-en'
 
 TIME_ZONE = 'Europe/Warsaw'
 
