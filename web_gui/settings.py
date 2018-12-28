@@ -70,18 +70,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web_gui.wsgi.application'
 
-
+# dbname='{your_database}' user='tajfunek@web-gui' host='web-gui.postgres.database.azure.com’ password='{your_password}' port='5432' sslmode=true'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'scans',
-        'USER': 'scans_main',
-        'PASSWORD': 'sieweczka',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': os.environ.get('DATABASENAME', ''),
+        'USER': os.environ.get('DATABASEUSER', ''),
+        'PASSWORD': os.environ.get('DATABASEPASSW', ''),
+        'HOST': os.environ.get('DATABASEHOST', ''),
+        'PORT': '5432',
     }
 }
 
