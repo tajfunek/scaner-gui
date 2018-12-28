@@ -25,7 +25,9 @@ SECRET_KEY = '*tsij#g&zr8jrdlvb%yfz8e^r4gtnq0m6_81=g(bi_ep1uw_i$'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'web-gui.azurewebsites.net'
+]
 
 
 # Application definition
@@ -68,9 +70,10 @@ TEMPLATES = [
     },
 ]
 
+#ptvs_virtualenv_proxy.get_venv_handler()
 WSGI_APPLICATION = 'web_gui.wsgi.application'
 
-# dbname='{your_database}' user='tajfunek@web-gui' host='web-gui.postgres.database.azure.com’ password='{your_password}' port='5432' sslmode=true'
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
