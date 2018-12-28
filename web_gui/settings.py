@@ -76,10 +76,7 @@ WSGI_APPLICATION = 'web_gui.wsgi.application'
 
 DATABASES = {
     'default': {
-<<<<<<< Updated upstream
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-=======
->>>>>>> Stashed changes
         'NAME': os.environ.get('DATABASENAME', ''),
         'USER': os.environ.get('DATABASEUSER', ''),
         'PASSWORD': os.environ.get('DATABASEPASSW', ''),
