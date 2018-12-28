@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'web_gui.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('DATABASENAME', ''),
-        'USER': os.environ.get('DATABASEUSER', ''),
-        'PASSWORD': os.environ.get('DATABASEPASSW', ''),
-        'HOST': os.environ.get('DATABASEHOST', ''),
-        'PORT': '5432',
+        'NAME': 'scans',
+        'USER': 'scans_main',
+        'PASSWORD': 'sieweczka',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
 
@@ -125,4 +125,4 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_ROOT = 'D:/home/site/wwwroot'
+STATIC_URL = '/static/'
