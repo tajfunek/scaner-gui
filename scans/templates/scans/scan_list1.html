@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	{% load static %}
+	<link rel="stylesheet" href="{% static "scans/custom.css" %}">
+	<script
+  		src="https://code.jquery.com/jquery-3.3.1.min.js"
+  		integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  		crossorigin="anonymous"> 
+ 	</script>
+	<script type="text/javascript" src="{% static 'scans/site.js' %}"></script>
+	<meta charset="UTF-8">
+	<title>Scan&Print</title>
+</head>
+<body>
+	<div class="color">
+		<header>
+			<p>Scan & Print</p>
+		</header>
+		<main>
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Date</th>
+						<th>Options</th>
+					</tr>
+				</thead>
+				{% for scan in object_list%}	
+				<tr>
+					<td class="size-25">
+						<p id="name-{{ scan.pk }}">{{ scan.name }}</p>
+						<div class="d-none" id="rename-box-{{ scan.pk }}">
+							<button class="button-sub-cancel" onclick="hideRename({{ scan.pk }})">Cancel</button>
+							<button class="button-sub-name" onclick="submitName({{ scan.pk }})">Submit</button>
+							<input type="text" id="input-scan-{{ scan.pk }}" class="input-rename in-normal" maxlength="30">
+						</div>
+					</td>
+					<td class="size-15"><p class="p-table">{{ scan.date }}</p></td>
+					<td class="size-10">
+						<div class="dropdown">
+							<button id="options-{{ scan.pk }}" class="button-dropdown">More</button>
+							<div class="dropdown-content">
+								<button>Download Gcode</button>
+								<button>Print</button>
+								<button>Show scan</button>
+								<button onclick="showRename({{ scan.pk }})">Rename</button>
+							</div>
+						</div>
+	    			</td>
+				</tr>
+				{% empty %}
+				<caption>You have to create scans first</caption>
+				{% endfor %}
+			</table>
+		</main>
+		<footer>
+			
+		</footer>
+	</div>
+</body>
+</html>

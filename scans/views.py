@@ -12,8 +12,8 @@ class IndexView(ListView):
 		return '-date'
 
 def rename(request):
-	pk = request.GET['pk']
-	new_name = request.GET['name']
+	pk = request.POST['pk']
+	new_name = request.POST['name']
 
 	obj = Scan.objects.get(pk=pk)
 	if len(new_name) < 35 and len(new_name) > 0:

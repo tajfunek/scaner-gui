@@ -14,39 +14,82 @@ header {
 	font-size: 2.5em;
 }
 
-table {
-	align-self: center;
-  	border-collapse: collapse;
-  	width: 52em;
+caption {
+	caption-side: bottom;
 }
 
-table, th, td {
-  /*border: 4px solid #8c8c8c;*/
+table {
+  	width: 52em;
 }
 
 td {
 	vertical-align: center;
 	text-align: left;
-}
-
-th {
-	text-align: left;
+	padding-bottom: 1em;
 }
 
 td, th {
 	padding: 1em;
 	font-family: "Times New Roman", Times, serif;
 	font-size: 0.95em;
-	border-bottom: 2px solid #8c8c8c
+	text-align: left;
+	font-weight: 500;
 }
 
 tr {
-	line-height: 0em
+	line-height: 0em;
+	width: 52em;
+}
+
+.row {
+	border: 2px solid #80ff80;
+	border-radius: 20px;
+	align-self: center;
+	background-color: #e6ffe6;
+	margin: 0 auto;
+}
+
+.size-25 {
+	width: 30em;
+}
+
+.size-15 {
+	width: 15em;
+}
+
+.size-10 {
+	width: 1em;
+}
+
+.cancel-button {
+	height: 2em;
+	width: 5em;
+	margin: 0 auto;
+}
+
+.render-div {
+	margin: 0 auto;
+	margin-bottom: 1em;
+	width: 40em;
+	height: 32em;
+}
+
+.canvas-div {
+	width: 40em;
+	height: 30em;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.button-visual-cancel {
+	background-color: #ffcccc;
+	border-radius: 4px;
+	width: 5em;
 }
 
 .button-dropdown {
     background-color: #ffffe6;
-    border: 2px solid white;
+    border: 2px solid #ffff00;
     border-radius: 4px;
     cursor: pointer;
     overflow: hidden;
@@ -68,8 +111,8 @@ tr {
 }
 
 .dropdown-content button {
-    background-color: #e6ffe6;
-    border: 2px solid #b3ffb3;
+    background-color: #e6f7ff;
+    border: 2px solid #66cfff;
     cursor: pointer;
     overflow: hidden;
     outline:none;
@@ -91,8 +134,7 @@ tr {
 
 .input-rename {
 	border-radius: 4px;
-	width: 22em;
-	height: 1em;
+	width: 20.5em;
 	font-size: 1em;
 }
 
@@ -118,22 +160,12 @@ tr {
 	float: right;
 }
 
-.size-25 {
-	width: 34em;
-}
-
-.size-15 {
-	width: 18em;
-}
-
-.size-10 {
-	width: 1em;
-}
-
 .d-none {
 	display: none;
 }
 
-.d-true {
-	display: block;
+.spacing {
+	visibility: hidden;
+	text-align: center;
+	font-size: 0.3em
 }

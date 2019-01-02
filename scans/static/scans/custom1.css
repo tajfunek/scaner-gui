@@ -1,0 +1,142 @@
+html {
+	display: table;
+    margin: auto;
+}
+
+body {
+	background-color: #f0f0f0;
+    display: table-cell;
+}
+
+header {
+	text-align: center;
+	font-family: "Courier New", Courier, monospace;
+	font-size: 2.5em;
+}
+
+caption {
+	caption-side: bottom;
+}
+
+table {
+	align-self: center;
+	border-collapse: separate;
+	border-spacing: 0 1em;
+	border: 2px solid #8c8c8c;
+  	width: 52em;
+}
+
+td {
+	vertical-align: center;
+	text-align: left;
+	padding-bottom: 1em;
+}
+
+th {
+	text-align: left;
+}
+
+td, th {
+	padding: 1em;
+	font-family: "Times New Roman", Times, serif;
+	font-size: 0.95em;
+}
+
+tr {
+	line-height: 0em;
+	border: 2px solid #8c8c8c;
+}
+
+.size-25 {
+	width: 34em;
+}
+
+.size-15 {
+	width: 18em;
+}
+
+.size-10 {
+	width: 1em;
+}
+
+.button-dropdown {
+    background-color: #ffffe6;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    overflow: hidden;
+    outline:none;
+}
+
+.dropdown {
+	position: relative;
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: transparent;
+  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  	z-index: 1;
+  	min-width: 5em;
+}
+
+.dropdown-content button {
+    background-color: #e6ffe6;
+    border: 2px solid #b3ffb3;
+    cursor: pointer;
+    overflow: hidden;
+    outline:none;
+    width: 6em;
+    text-align: center;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+
+.dropdown:hover .button-dropdown {
+	background-color: #ffff99;
+}
+
+.dropdown-content button:hover {
+	background-color: #ccffcc
+}
+
+.input-rename {
+	border-radius: 4px;
+	width: 22em;
+	height: 1em;
+	font-size: 1em;
+}
+
+.in-red {
+	border: 2px solid red;
+}
+
+.in-normal {
+	border: 2px solid lightblue;
+}
+
+.button-sub-name {
+	background-color: lightblue;
+	border-radius: 4px;
+	width: 5em;
+	float: right;
+}
+
+.button-sub-cancel {
+	background-color: #ffcccc;
+	border-radius: 4px;
+	width: 5em;
+	float: right;
+}
+
+.d-none {
+	display: none;
+}
+
+.d-true {
+	display: block;
+}
