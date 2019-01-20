@@ -17,33 +17,82 @@ function hideVisual(id) {
 	}
 }
 
-function getFile(path) {
-	var ret;
-	jQuery.get(path, function( data ) {
-    	ret = data;
-  	});
-	console.log(ret);
-  	return ret;
-}
+// function getFile(path) {
+// 	var ret;
+// 	jQuery.get(path, function( data ) {
+//     	ret = data;
+//   	});
+// 	console.log(ret);
+//   	return ret;
+// }
 
 function visualise(container, path) {
 	var container = container;
-	var sample = 24;
+	var sample = 16;
 	var n = 10;
-	var scene;
-	var camera;
-	var renderer;
+	var scene, camera, renderer;
+	var points;
+	var up = false;
+	var down = false;
+	var left = false;
+	var right = false;
+	var a_press = false;
+	var d_press = false;
+
+	var clock = new THREE.Clock();
+	var delta = 0;
+	// 30 fps
+	var interval = 1 / 60;
+
+	function keyDown(event) {
+		event.preventDefault();
+		// event.stopPropagination();
+		if(event.keyCode == 37) {
+			left = true;
+		} else if(event.keyCode == 38) {
+			up = true;
+		} else if(event.keyCode == 39) {
+			right = true;
+		} else if(event.keyCode == 40) {
+			down = true;
+		}  else if(event.keyCode == 65) {
+			a_press = true;
+		} else if(event.keyCode == 68) {
+			d_press = true;
+		} 
+	}
+
+	function keyUp(event) {
+		event.preventDefault();
+		// event.stopPropagination();
+		if(event.keyCode == 37) {
+			left = false;
+		} else if(event.keyCode == 38) {
+			up = false;
+		} else if(event.keyCode == 39) {
+			right = false;
+		} else if(event.keyCode == 40) {
+			down = false;
+		} else if(event.keyCode == 65) {
+			a_press = false;
+		} else if(event.keyCode == 68) {
+			d_press = false;
+		} 
+	}
+
+	window.addEventListener('keydown', keyDown, false);
+	window.addEventListener('keyup', keyUp, false);
 
 	function callback(data) {
 		init(data);
-		render();
+		animate();
 	}
 
-	function init(text) {
+	function init(text) {		
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera(45, $(container).width()/$(container).height(), 1, 1000);
-		camera.position.set(200, 100, 150);
-		camera.lookAt( 0, 0, 0 );
+		camera.position.set(200, 0, 0);
+		camera.lookAt( 0, 50, 0 );
 
 		renderer = new THREE.WebGLRenderer({antialiasing: true});
 		renderer.setSize($(container).width(), $(container).height());
@@ -96,18 +145,48 @@ function visualise(container, path) {
 		
 		var material = new THREE.PointsMaterial({ size: 15, vertexColors: THREE.VertexColors });
 		points = new THREE.Points( geometry, material );
+		points.rotateX(-0.5*3.1415);
 
 		scene.add( points );
 		//renderer.render( scene, camera );
 	}
 
 	function render() {
-		renderer.clear();
-		composer.render();
+   	}
+
+	function animate() {
+		requestAnimationFrame(animate);
+		delta += clock.getDelta();
+   		if (delta  > interval) {
+	   		if(up == true) {
+	   			points.rotateY(0.0027*3.14159);
+	   		}
+	   		if(down == true) {
+	   			points.rotateY(-0.0027*3.14159);
+	   		}
+	   		if(left== true) {
+	   			points.rotateX(0.0027*3.14159);
+	   		}
+	   		if(right == true) {
+	   			points.rotateX(-0.0027*3.14159);
+	   		}
+	   		if(a_press == true) {
+	   			points.rotateZ(-0.0027*3.14159*1.5);
+	   		}
+	   		if(d_press == true) {
+	   			points.rotateZ(0.0027*3.14159*1.5);
+	   		}
+
+			renderer.clear();
+			composer.render();
+	        
+	        delta = delta % interval;
+   		}
 	}
 
 	jQuery.get({
 		url: 'static/' + path, 
 		success: callback
   	});
+
 }
