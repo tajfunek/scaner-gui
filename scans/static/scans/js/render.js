@@ -1,21 +1,13 @@
-function showVisual(id, path) {
-	var container = document.getElementById("render-" + id);
-	if(container.classList.contains("d-none")) {
-		container.classList.remove("d-none");
-		visualise(document.getElementById("canvas-" + id), path);
-	}
-}
-
-function hideVisual(id) {
-	var container = document.getElementById("render-" + id);
-	container.classList.add("d-none");
-	var children = container.children;
-	for (var i = children.length - 1; i >= 0; i--) {
-		if(children[i].id == ("canvas-" + id)) {
-			children[i].children.item(0).remove()
-		}
-	}
-}
+// function hideVisual(id) {
+// 	var container = document.getElementById("render-" + id);
+// 	container.classList.add("d-none");
+// 	var children = container.children;
+// 	for (var i = children.length - 1; i >= 0; i--) {
+// 		if(children[i].id == ("canvas-" + id)) {
+// 			children[i].children.item(0).remove()
+// 		}
+// 	}
+// }
 
 // function getFile(path) {
 // 	var ret;
@@ -26,11 +18,12 @@ function hideVisual(id) {
 //   	return ret;
 // }
 
-function visualise(container, path) {
-	var container = container;
-	var sample = 16;
+function visualize(pk, path) {
+	var id;
+	var canvas;
+	var sample = 8;
 	var n = 10;
-	var scene, camera, renderer;
+	var scene, camera, renderer, composer;
 	var points;
 	var up = false;
 	var down = false;
@@ -90,12 +83,12 @@ function visualise(container, path) {
 
 	function init(text) {		
 		scene = new THREE.Scene();
-		camera = new THREE.PerspectiveCamera(45, $(container).width()/$(container).height(), 1, 1000);
+		camera = new THREE.PerspectiveCamera(45, $(canvas).width()/$(canvas).height(), 1, 1000);
 		camera.position.set(200, 0, 0);
 		camera.lookAt( 0, 50, 0 );
 
 		renderer = new THREE.WebGLRenderer({antialiasing: true});
-		renderer.setSize($(container).width(), $(container).height());
+		renderer.setSize($(canvas).width(), $(canvas).height());
 
 		renderer.autoClear = false;
 
@@ -105,11 +98,11 @@ function visualise(container, path) {
 		effectCopy.renderToScreen = true;
 		composer = new THREE.EffectComposer(renderer);
 
-		composer.setSize($(container).width() * sample, $(container).height() * sample);
+		composer.setSize($(canvas).width() * sample, $(canvas).height() * sample);
 		composer.addPass(renderModel);
 		composer.addPass(effectCopy);
 
-		container.appendChild(renderer.domElement);
+		canvas.appendChild(renderer.domElement);
 
 		//scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
 
@@ -155,7 +148,7 @@ function visualise(container, path) {
    	}
 
 	function animate() {
-		requestAnimationFrame(animate);
+		id = requestAnimationFrame(animate);
 		delta += clock.getDelta();
    		if (delta  > interval) {
 	   		if(up == true) {
@@ -184,9 +177,56 @@ function visualise(container, path) {
    		}
 	}
 
+	function showVisual(pk) {
+		if(document.getElementById("canvas-" + pk) == null) {
+			row = document.getElementById(pk);
+	
+			var container = document.createElement("DIV");
+			container.classList.add("render-div");
+			container.id = "render-" + pk;
+	
+			canvas = document.createElement("DIV");
+			canvas.classList.add("render-div");
+	
+			var button_div = document.createElement("DIV");
+			button_div.classList.add("cancel-button");
+	
+			var button_cancel = document.createElement("BUTTON");
+			button_cancel.classList.add("button-visual-cancel");
+			button_cancel.innerHTML = "Cancel";
+
+			button_div.appendChild(button_cancel);
+	
+			container.appendChild(button_div);
+			container.appendChild(canvas);
+			row.appendChild(container);
+			button_cancel.addEventListener("click", function(event) {
+				cancelAnimationFrame(id)
+				window.removeEventListener('keydown', keyDown, false);
+				window.removeEventListener('keyup', keyUp, false);			
+				renderer.domElement.addEventListener('dblclick', null, false);
+				scene = null;
+				camera = null;
+				renderer = null;
+				container = null;
+				points = null;
+				composer = null;
+				button_div.removeChild(button_cancel)
+				container = document.getElementById("render-" + pk)
+				while(container.firstChild){
+					container.removeChild(container.firstChild);
+				}
+				row.removeChild(container);				
+			})
+		}	
+	}
+
+	showVisual(pk)
+
 	jQuery.get({
 		url: 'static/' + path, 
 		success: callback
   	});
+
 
 }
