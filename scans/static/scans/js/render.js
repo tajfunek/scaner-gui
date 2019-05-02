@@ -1,23 +1,3 @@
-// function hideVisual(id) {
-// 	var container = document.getElementById("render-" + id);
-// 	container.classList.add("d-none");
-// 	var children = container.children;
-// 	for (var i = children.length - 1; i >= 0; i--) {
-// 		if(children[i].id == ("canvas-" + id)) {
-// 			children[i].children.item(0).remove()
-// 		}
-// 	}
-// }
-
-// function getFile(path) {
-// 	var ret;
-// 	jQuery.get(path, function( data ) {
-//     	ret = data;
-//   	});
-// 	console.log(ret);
-//   	return ret;
-// }
-
 function visualize(pk, path) {
 	var id;
 	var canvas;
@@ -37,6 +17,9 @@ function visualize(pk, path) {
 	// 30 fps
 	var interval = 1 / 60;
 
+	// SETUP OF FUNCTIONS:
+
+	// Event listener functions for rotating object
 	function keyDown(event) {
 		event.preventDefault();
 		// event.stopPropagination();
@@ -72,16 +55,22 @@ function visualize(pk, path) {
 			d_press = false;
 		} 
 	}
-
+	
+	// Adding "keyDown()" and "keyUp()" as event handlers
 	window.addEventListener('keydown', keyDown, false);
 	window.addEventListener('keyup', keyUp, false);
 
+	// Called by jQuery GET if downloding of pointcloud file from server succeeded
 	function callback(data) {
+		// Calls inti function and then animate to start animating
 		init(data);
 		animate();
 	}
 
-	function init(text) {		
+	// Sets up all objects used by Three.JS rendering
+	// Extracts points from text file and adds them to scene
+	function init(text) {
+		// Creating objects
 		scene = new THREE.Scene();
 		camera = new THREE.PerspectiveCamera(45, $(canvas).width()/$(canvas).height(), 1, 1000);
 		camera.position.set(200, 0, 0);
@@ -104,11 +93,9 @@ function visualize(pk, path) {
 
 		canvas.appendChild(renderer.domElement);
 
-		//scene.fog = new THREE.Fog( 0x050505, 2000, 3500 );
-
+		// Extracting points
 		var geometry = new THREE.BufferGeometry();
 		rows = text.split('\n');
-		//console.log(rows.length);
 
 		var values = new Float32Array(rows.length * 3);
 		var colors = [];
@@ -128,25 +115,19 @@ function visualize(pk, path) {
 			color.setRGB( vx, vy, vz );
 			colors.push( color.r, color.g, color.b );
 		}
-		//console.log(values[0]);
-		//console.log(values.length);
 
 		geometry.addAttribute( 'position', new THREE.Float32BufferAttribute( values, 3 ) );
 		geometry.addAttribute( 'color', new THREE.Float32BufferAttribute( colors, 3 ) );
-
-		//console.log(geometry.getAttribute('position'));
 		
 		var material = new THREE.PointsMaterial({ size: 15, vertexColors: THREE.VertexColors });
 		points = new THREE.Points( geometry, material );
 		points.rotateX(-0.5*3.1415);
 
 		scene.add( points );
-		//renderer.render( scene, camera );
 	}
 
-	function render() {
-   	}
-
+	// Called by requestAnimationFrame
+	// Rotates object if 'interval' time passed
 	function animate() {
 		id = requestAnimationFrame(animate);
 		delta += clock.getDelta();
@@ -176,9 +157,12 @@ function visualize(pk, path) {
 	        delta = delta % interval;
    		}
 	}
-
+	// Functions, which creates and shows canvas for Three.JS to render on
 	function showVisual(pk) {
+		// Check if canvas exists, if it exists do nothing
+		// If not create one
 		if(document.getElementById("canvas-" + pk) == null) {
+			// Preparation of all elements to add to DOM
 			row = document.getElementById(pk);
 	
 			var container = document.createElement("DIV");
@@ -186,7 +170,7 @@ function visualize(pk, path) {
 			container.id = "render-" + pk;
 	
 			canvas = document.createElement("DIV");
-			canvas.classList.add("render-div");
+			canvas.classList.add("canvas-div");
 	
 			var button_div = document.createElement("DIV");
 			button_div.classList.add("cancel-button");
@@ -200,6 +184,10 @@ function visualize(pk, path) {
 			container.appendChild(button_div);
 			container.appendChild(canvas);
 			row.appendChild(container);
+
+			// Stops rendering on click button - "Cancel" eventListener
+			// Destroys all object used by Three.JS
+			// Destroys canvas, and removes everything from DOM
 			button_cancel.addEventListener("click", function(event) {
 				cancelAnimationFrame(id)
 				window.removeEventListener('keydown', keyDown, false);
@@ -220,9 +208,12 @@ function visualize(pk, path) {
 			})
 		}	
 	}
+	// END OF FUNCTIONS SETUP
 
+	// First function to be called by visualize()
 	showVisual(pk)
 
+	// Get textfile containg points from server - AJAX
 	jQuery.get({
 		url: 'static/' + path, 
 		success: callback
