@@ -6,11 +6,12 @@
 	<script type="text/javascript" src="{% static 'js/render.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/rename.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/cookie.js' %}"></script>
- 	<script type="text/javascript" src="{% static 'js/threejs/three.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/threejs/CopyShader.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/threejs/EffectComposer.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/threejs/RenderPass.js' %}"></script>
-	<script type="text/javascript" src="{% static 'js/threejs/ShaderPass.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/scan.js' %}"></script>
+ 	<script type="text/javascript" src="{% static 'js/threejs/three.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/threejs/CopyShader.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/threejs/EffectComposer.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/threejs/RenderPass.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/threejs/ShaderPass.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
 	<meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0" />
 	<meta http-equiv="cache-control" content="max-age=0" />
@@ -27,7 +28,10 @@
 			<p>Scan & Print</p>
 		</header>
 		<main>
-			<div class="row">
+			<div id="scan-div" class="scan-div">
+				<button class="scan-button" id="scan-button">Enter scan mode</button>
+			</div>
+			<div id="table" class="row">
 				<table class="header">
 					<thead>
 						<tr>
@@ -45,11 +49,6 @@
 					<tr>
 						<td class="size-25" id="name_box-{{ scan.pk }}">
 							<p id="name-{{ scan.pk }}">{{ scan.name }}</p>
-							{% comment %} <div class="d-none" id="rename-box-{{ scan.pk }}">
-								<button class="button-sub-cancel" onclick="hideRename({{ scan.pk }})">Cancel</button>
-								<button class="button-sub-name" onclick="submitName({{ scan.pk }})">Submit</button>
-								<input type="text" id="input-scan-{{ scan.pk }}" class="input-rename in-normal" maxlength="30">
-							</div> {% endcomment %}
 						</td>
 						<td class="size-15"><p class="p-table">{{ scan.date }}</p></td>
 						<td class="size-10">

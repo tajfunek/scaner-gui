@@ -1,147 +1,164 @@
 /* GENERAL  */
+
 html {
-	display: table;
+    display: table;
     margin: auto;
 }
 
 body {
-	background-color: #f0f0f0;
+    background-color: #f0f0f0;
     display: table-cell;
 }
 
 header {
-	text-align: center;
-	font-family: "Courier New", Courier, monospace;
-	font-size: 2.5em;
+    text-align: center;
+    font-family: "Courier New", Courier, monospace;
+    font-size: 2.5em;
 }
 
 caption {
-	caption-side: bottom;
+    caption-side: bottom;
 }
 
 .d-none {
-	display: none;
+    display: none;
 }
 
 .spacing {
-	visibility: hidden;
-	text-align: center;
-	font-size: 0.3em
+    visibility: hidden;
+    text-align: center;
+    font-size: 0.3em
 }
+
+
 /* END OF GENERAL */
 
+
 /* TABLE CSS */
+
 table {
-  	width: 52em;
+    width: 52em;
 }
 
 td {
-	vertical-align: center;
-	text-align: left;
-	padding-bottom: 1em;
+    vertical-align: center;
+    text-align: left;
+    padding-bottom: 1em;
 }
 
-td, th {
-	padding: 1em;
-	font-family: "Times New Roman", Times, serif;
-	font-size: 0.95em;
-	text-align: left;
-	font-weight: 500;
+td,
+th {
+    padding: 1em;
+    font-family: "Times New Roman", Times, serif;
+    font-size: 0.95em;
+    text-align: left;
+    font-weight: 500;
 }
 
 tr {
-	line-height: 0em;
-	width: 52em;
+    line-height: 0em;
+    width: 52em;
 }
 
 .row {
-	border: 2px solid #80ff80;
-	border-radius: 20px;
-	align-self: center;
-	background-color: #e6ffe6;
-	margin: 0 auto;
+    border: 2px solid #80ff80;
+    border-radius: 20px;
+    align-self: center;
+    background-color: #e6ffe6;
+    margin: 0 auto;
 }
 
+
 /* Sizes for each columns */
+
 .size-25 {
-	width: 30em;
+    width: 30em;
 }
 
 .size-15 {
-	width: 15em;
+    width: 15em;
 }
 
 .size-10 {
-	width: 1em;
+    width: 1em;
 }
+
+
 /* END OF TABLE CSS */
 
+
 /* CSS FOR CANVAS AND CONNECTED ELEMNETS */
+
 .button-div {
-	height: 2em;
-	width: 14em;
-	margin: 0 auto;
+    height: 2em;
+    width: 14em;
+    margin: 0 auto;
 }
 
 .render-div {
-	margin: 0 auto;
-	margin-bottom: 1em;
-	width: 40em;
-	height: 32em;
+    margin: 0 auto;
+    margin-bottom: 1em;
+    width: 40em;
+    height: 32em;
 }
 
 .canvas-div {
-	width: 40em;
-	height: 30em;
-	margin: 0 auto;
-	margin-bottom: 1em;
+    width: 40em;
+    height: 30em;
+    margin: 0 auto;
+    margin-bottom: 1em;
 }
 
 .button-visual {
-	border-radius: 4px;
+    border-radius: 4px;
 }
 
 .button-visual-red {
-	background-color: #ffcccc;
-	/* width: 5em; */
+    background-color: #ffcccc;
+    /* width: 5em; */
 }
 
 .button-visual-blue {
-	background-color: lightblue;
-	/* width: 9.5em; */
+    background-color: lightblue;
+    /* width: 9.5em; */
 }
 
+
 /* Change resolution */
+
 .input-resolution {
-	border-radius: 4px;
-	border: auto solid lightblue;
-	width: 9em;
+    border-radius: 4px;
+    border: auto solid lightblue;
+    width: 9em;
 }
+
 
 /* END OF CANVAS CSS */
 
+
 /* CSS FOR DROPDOWN MENU */
+
 .button-dropdown {
     background-color: #ffffe6;
     border: 2px solid #ffff00;
     border-radius: 4px;
     cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
 }
 
 .dropdown {
-	position: relative;
-	display: inline-block;
+    position: relative;
+    display: inline-block;
 }
 
 .dropdown-content {
-	display: none;
-	position: absolute;
-	background-color: transparent;
-  	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  	z-index: 1;
-  	min-width: 5em;
+    display: none;
+    position: absolute;
+    background-color: transparent;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    min-width: 5em;
 }
 
 .dropdown-content button {
@@ -149,50 +166,90 @@ tr {
     border: 2px solid #66cfff;
     cursor: pointer;
     overflow: hidden;
-    outline:none;
+    outline: none;
     width: 6em;
     text-align: center;
 }
 
 .dropdown:hover .dropdown-content {
-	display: block;
+    display: block;
 }
 
 .dropdown:hover .button-dropdown {
-	background-color: #ffff99;
+    background-color: #ffff99;
 }
 
 .dropdown-content button:hover {
-	background-color: #ccffcc
+    background-color: #ccffcc
 }
+
+
 /* END OF CSS FOR DROPDOWN */
 
+
 /* CSS FOR RENAME */
+
 .input-rename {
-	border-radius: 4px;
-	width: 20.5em;
-	font-size: 1em;
+    border-radius: 4px;
+    width: 20.5em;
+    font-size: 1em;
 }
 
 .in-red {
-	border: 2px solid red;
+    border: 2px solid red;
 }
 
 .in-normal {
-	border: 2px solid lightblue;
+    border: 2px solid lightblue;
 }
 
 .button-sub-name {
-	background-color: lightblue;
-	border-radius: 4px;
-	width: 5em;
-	float: right;
+    background-color: lightblue;
+    border-radius: 4px;
+    width: 5em;
+    float: right;
 }
 
 .button-sub-cancel {
-	background-color: #ffcccc;
-	border-radius: 4px;
-	width: 5em;
-	float: right;
+    background-color: #ffcccc;
+    border-radius: 4px;
+    width: 5em;
+    float: right;
 }
+
+
 /* END OF CSS FOR RENAME */
+
+
+/* CSS FOR SCAN BUTTONS */
+
+.scan-div {
+    width: 9em;
+    margin: 0.5em auto;
+}
+
+.scan-button {
+    width: 9em;
+    font-size: 1em;
+    background-color: #8feef7;
+    border-radius: 4px;
+    border: 2px solid #8fbaf7;
+    outline: none;
+}
+
+.scan-button:hover {
+    background-color: #b0f6fc;
+}
+
+
+/* END OF CSS FOR SCAN BUTTONS */
+
+
+/* SCAN MODE */
+
+.input-div {
+    margin: 0.5em auto;
+}
+
+.parameters
+/* END OF SCAN MODE */
