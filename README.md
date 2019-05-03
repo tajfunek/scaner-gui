@@ -1,6 +1,13 @@
-Requirments:
--Python3
--Django(python3 -m pip install django)
-For production(Linux or WSL):
--Apache(sudo apt install apache2)
--mod_wsgi(https://github.com/GrahamDumpleton/mod_wsgi/archive/4.6.5.tar.gz)
+# Web-based GUI for Scan&Print project(but no printing)
+
+It uses Django as backend with SQLite database.
+Rendering options for "scans" is based on Three.JS
+
+Prequisties:
+*Python-3 with Django framework
+
+Just download and it should be working.
+
+TODO:
+*"Scan mode"
+*Interface with scanning part of project
