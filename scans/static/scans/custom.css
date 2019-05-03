@@ -189,15 +189,22 @@ tr {
 
 /* CSS FOR RENAME */
 
+
+/* Reused */
+
 .input-rename {
     border-radius: 4px;
-    width: 20.5em;
+    width: 20em;
     font-size: 1em;
+    float: left;
 }
 
 .in-red {
     border: 2px solid red;
 }
+
+
+/* Reused */
 
 .in-normal {
     border: 2px solid lightblue;
@@ -207,14 +214,14 @@ tr {
     background-color: lightblue;
     border-radius: 4px;
     width: 5em;
-    float: right;
+    float: left;
 }
 
 .button-sub-cancel {
     background-color: #ffcccc;
     border-radius: 4px;
     width: 5em;
-    float: right;
+    float: left;
 }
 
 
@@ -235,6 +242,7 @@ tr {
     border-radius: 4px;
     border: 2px solid #8fbaf7;
     outline: none;
+    margin: 0 auto;
 }
 
 .scan-button:hover {
@@ -249,7 +257,22 @@ tr {
 
 .input-div {
     margin: 0.5em auto;
+    width: 20em;
 }
 
-.parameters
+.input-div .btn-cancel {
+    background-color: lightblue;
+    border-radius: 4px;
+    float: right;
+    margin: 0.4em auto;
+}
+
+.input-div .btn-start {
+    background-color: #ffcccc;
+    border-radius: 4px;
+    float: left;
+    margin: 0.4em auto;
+}
+
+
 /* END OF SCAN MODE */
