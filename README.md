@@ -24,3 +24,8 @@ TODO
 * [ ] Passing paramters to server
 * [ ] Posiblity of starting a scan(simulation)
 * [ ] Interface with scanning part of project
+
+BUGS TO SOLVE
+---
+
+* [ ] Cannot rename scan while render windows is open(Keyboard Event Listeners)
