@@ -17,8 +17,28 @@ function enterScanMode(event) {
     // Hiding buttow which enters 'Scan Mode', but it still takes some space
 
     // Container for all inputs
-    div_parameters = document.createElement("DIV");
-    div_parameters.classList.add("input-div");
+    var scan_mode_div = document.createElement("DIV");
+    scan_mode_div.classList.add("input-div");
+
+    // Container for two buttons under inputs: "Start" and "Cancel"
+    var buttons_div = document.createElement("DIV");
+
+    // This button closes all inputs and returns to scans list
+    var cancel_btn = document.createElement("BUTTON");
+    cancel_btn.classList.add("btn-cancel");
+    cancel_btn.innerHTML = "Return to scan list";
+
+    // "Start scan" button
+    // Pressing this button is gonna send AJAX request to server
+    var start_btn = document.createElement("BUTTON");
+    start_btn.classList.add("btn-start");
+    start_btn.innerHTML = "Confirm parameters";
+    // Appending buttons to their container
+    buttons_div.appendChild(start_btn);
+    buttons_div.appendChild(cancel_btn);
+
+    // Appending buttons' container to main scan mode container
+    scan_mode_div.appendChild(buttons_div);
 
     //Creating inputs for parameters:
     var inputs = [];
@@ -28,36 +48,18 @@ function enterScanMode(event) {
         inputs[i].classList.add("in-normal");
         inputs[i].placeholder = parameters[i]; // Adding background text
 
-        div_parameters.appendChild(inputs[i]); // Adding to inputs container
+        scan_mode_div.appendChild(inputs[i]); // Adding to inputs container
     }
-
-    // Container for two buttons under inputs: "Start" and "Cancel"
-    buttons_div = document.createElement("DIV");
-    // buttons_div.classList.add("btn-div");
-
-    // This button closes all inputs and returns to scans list
-    cancel_btn = document.createElement("BUTTON");
-    cancel_btn.classList.add("btn-cancel");
-    cancel_btn.innerHTML = "Return to scan list";
-
-    // "Start scan" button
-    // Pressing this button is gonna send AJAX request to server
-    start_btn = document.createElement("BUTTON");
-    start_btn.classList.add("btn-start");
-    start_btn.innerHTML = "Confirm parameters";
-    // Appending buttons to their container
-    buttons_div.appendChild(start_btn);
-    buttons_div.appendChild(cancel_btn);
-
-    // Appending buttons' container to main scan mode container
-    div_parameters.appendChild(buttons_div);
 
     // Resize of scan-div to fit inputs in it
     document.getElementById("scan-div").style.width = "20em";
 
     // Appending main scan mode container to DOM and hiding "Enter scan mode" button
     document.getElementById("scan-button").classList.add("d-none");
-    document.getElementById("scan-div").appendChild(div_parameters);
+    document.getElementById("scan-div").appendChild(scan_mode_div);
+
+    var progress_bar;
+    var cmd_line;
 
     // Event listener for click on close button
     // Creating stuff, but in reverse
@@ -66,9 +68,9 @@ function enterScanMode(event) {
         buttons_div.removeChild(cancel_btn);
         buttons_div.removeChild(start_btn);
 
-        // Until "div_parameters" has childs remove them in loop
-        while (div_parameters.firstChild) {
-            div_parameters.removeChild(div_parameters.firstChild);
+        // Until "scan_mode_div" has childs remove them in loop
+        while (scan_mode_div.firstChild) {
+            scan_mode_div.removeChild(scan_mode_div.firstChild);
         }
 
         // Restore table
@@ -76,15 +78,40 @@ function enterScanMode(event) {
             rows[i].classList.remove("d-none");
         }
 
-        // Remove "div_parameters" and restore "Enter scan mode" button
+        // Remove "scan_mode_div" and restore "Enter scan mode" button
         document.getElementById("scan-button").classList.remove("d-none");
-        document.getElementById("scan-div").removeChild(div_parameters);
+        document.getElementById("scan-div").removeChild(scan_mode_div);
         document.getElementById("scan-div").style.width = "9em";
+        document.getElementById("main").removeChild(cmd_line);
+        document.getElementById("main").removeChild(progress_bar);
     });
 
     // Event listener for click on "Confirm" button
     start_btn.addEventListener("click", function(event) {
-        for (;;);
+        // Saving input
+        var values = new Array(parameters.length);
+        for (var i = 0; i < values.length; i++) {
+            values[i] = inputs[i].value;
+        }
+
+        // Creating progress bar to show scanning progress
+        progress_bar = document.createElement("PROGRESS");
+        progress_bar.max = 100;
+        progress_bar.value = 0;
+        progress_bar.style.width = "20em";
+        progress_bar.style.height = "2em";
+
+        // Console-styled container for output of program sent by server
+        cmd_line = document.createElement("DIV");
+        cmd_line.classList.add("console");
+        cmd_line.innerHTML = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. \
+                                Maecenas eget elit eget metus aliquet suscipit."
+
+        scan_mode_div.appendChild(progress_bar);
+        document.getElementById("main").appendChild(cmd_line);
+
+
     });
+
 
 }

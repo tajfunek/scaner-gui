@@ -65,7 +65,7 @@ tr {
     border-radius: 20px;
     align-self: center;
     background-color: #e6ffe6;
-    margin: 0 auto;
+    margin: 1em auto;
 }
 
 
@@ -264,14 +264,25 @@ tr {
     background-color: lightblue;
     border-radius: 4px;
     float: right;
-    margin: 0.4em auto;
+    margin: 0.5em auto;
 }
 
 .input-div .btn-start {
     background-color: #ffcccc;
     border-radius: 4px;
     float: left;
-    margin: 0.4em auto;
+    margin: 0.5em auto;
+}
+
+.console {
+    width: 40em;
+    background-color: black;
+    color: #41FF00;
+    overflow-wrap: break-word;
+    margin: 0.5em auto;
+    border-radius: 4px;
+    height: 30em;
+    overflow: auto;
 }
 
 

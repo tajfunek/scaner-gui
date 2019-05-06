@@ -29,7 +29,7 @@
 		<header>
 			<p>Scan & Print</p>
 		</header>
-		<main>
+		<main id="main">
 			<div id="scan-div" class="scan-div">
 				<button class="scan-button" id="scan-button">Enter scan mode</button>
 			</div>
@@ -43,8 +43,8 @@
 						</tr>
 					</thead>
 				</table>
+				{% comment %} <p class="spacing">SOME SPACING</p> {% endcomment %}
 			</div>
-			<p class="spacing">SOME SPACING</p>
 			{% for scan in object_list%}
 			<div class="row" id="{{ scan.pk }}">	
 				<table>
@@ -66,8 +66,8 @@
 		    			</td>
 					</tr>
 				</table>
+				{% comment %} <p class="spacing">SOME SPACING</p> {% endcomment %}
 			</div>
-			<p class="spacing">SOME SPACING</p>
 			{% empty %}
 			<caption>You have to create scans first</caption>
 			{% endfor %}

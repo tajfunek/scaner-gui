@@ -25,7 +25,7 @@ function rename(pk) {
             headers: {
                 'X-CSRFToken': csrftoken
             },
-            // On error input background changes colour
+            // On error input border changes colour
             // If succeeded returned name is set in 'p' element
             // Then cancel function is called by clicking 'Cancel' button
             success: function(data) {
