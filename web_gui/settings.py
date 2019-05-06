@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels'
 ]
 
 MIDDLEWARE = [
@@ -68,9 +69,7 @@ TEMPLATES = [
     },
 ]
 
-#ptvs_virtualenv_proxy.get_venv_handler()
-WSGI_APPLICATION = 'web_gui.wsgi.application'
-
+ASGI_APPLICATION = 'web_gui.routing.application'
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
