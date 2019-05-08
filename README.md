@@ -13,7 +13,7 @@ Prerequistes
 
 * Python 3.5+
 * Django framework(can be installed with `pip install Django`)
-* Django Channels(`pip install channels`)
+* Django Channels(`pip install -U channels`)
 
 TODO
 ---
